@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         score = 0;
-
+//CountDown timer tanımlanırken direkt başına new getirerek tanımla.
         new CountDownTimer(10000,1000) {
 
             @Override
