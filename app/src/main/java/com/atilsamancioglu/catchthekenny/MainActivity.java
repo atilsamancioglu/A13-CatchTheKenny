@@ -31,7 +31,13 @@ public class MainActivity extends AppCompatActivity {
     ImageView[] imageArray;
     Handler handler;
     Runnable runnable;
-
+//Runnable,kullanıcı arayüzünü kitlemeden arka planda
+//iş yapıyor.Bunu Thread.sleep() ile yapsaydık kullanıcı
+//Uİ ile etkileşime giremezdi program kitlenirdi
+//Kitlenmesin diye Runnable var ama Runnable de öyle
+//kendi kafasına göre çalışmıyor.Onu manage edecek
+//Handler'a ihtiyaç var Handler,Runnable'ın çalışma 
+//saatlerini belirler.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         score = 0;
-//CountDown timer tanımlanırken direkt başına new getirerek tanımla.
+//CountDown timer tanımlanırken direkt başına new getirerek tanımlama
+nedeni app daha ilk açılır açılmaz süreyi başlatmak
+içindir.Yoksa böyle yapmak zorunda değiliz.
         new CountDownTimer(10000,1000) {
 //CountDown Timer'ın kendi onTick metodunda millisUntilFinish,bitime kalan
 //süreyi saniye olarak veriyor ki biz bunu alıp kullanalım.
