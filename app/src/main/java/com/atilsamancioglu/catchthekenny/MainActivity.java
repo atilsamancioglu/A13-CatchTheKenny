@@ -95,7 +95,8 @@ içindir.Yoksa böyle yapmak zorunda değiliz.
                     public void onClick(DialogInterface dialog, int which) {
 
                         //restart
-
+//Activity'i tekrar başlatmak için activity'i destroy
+//tekrar activity'i çağırabiliriz.
                         Intent intent = getIntent();
                         finish();
                         startActivity(intent);
