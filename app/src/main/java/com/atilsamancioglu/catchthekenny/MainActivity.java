@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 //Kitlenmesin diye Runnable var ama Runnable de öyle
 //kendi kafasına göre çalışmıyor.Onu manage edecek
 //Handler'a ihtiyaç var Handler,Runnable'ın çalışma 
-//saatlerini belirler.
+//saatlerini belirler.Bunu da postDelayed() metoduyla
+//kaç saniyede veya milisaniyede yapacağını sorar.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ içindir.Yoksa böyle yapmak zorunda değiliz.
             public void onFinish() {
 
                 timeText.setText("Time Off");
+//Handler'ın removeCallbacks metoduyla biz runnable'ı durduruyoruz.
                 handler.removeCallbacks(runnable);
                 for (ImageView image : imageArray) {
                     image.setVisibility(View.INVISIBLE);
