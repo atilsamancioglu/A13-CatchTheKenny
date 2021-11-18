@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 //CountDown timer tanımlanırken direkt başına new getirerek tanımla.
         new CountDownTimer(10000,1000) {
 //CountDown Timer'ın kendi onTick metodunda millisUntilFinish,bitime kalan
-süreyi saniye olarak veriyor ki biz bunu alıp kullanalım.
+//süreyi saniye olarak veriyor ki biz bunu alıp kullanalım.
             @Override
             public void onTick(long millisUntilFinished) {
                 timeText.setText("Time: " + millisUntilFinished/1000);
