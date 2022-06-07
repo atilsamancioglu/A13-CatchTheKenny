@@ -31,7 +31,14 @@ public class MainActivity extends AppCompatActivity {
     ImageView[] imageArray;
     Handler handler;
     Runnable runnable;
-
+//Runnable,kullanıcı arayüzünü kitlemeden arka planda
+//iş yapıyor.Bunu Thread.sleep() ile yapsaydık kullanıcı
+//Uİ ile etkileşime giremezdi program kitlenirdi
+//Kitlenmesin diye Runnable var ama Runnable de öyle
+//kendi kafasına göre çalışmıyor.Onu manage edecek
+//Handler'a ihtiyaç var Handler,Runnable'ın çalışma 
+//saatlerini belirler.Bunu da postDelayed() metoduyla
+//kaç saniyede veya milisaniyede yapacağını sorar.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         score = 0;
-
+//CountDown timer tanımlanırken direkt başına new getirerek tanımlama
+nedeni app daha ilk açılır açılmaz süreyi başlatmak
+içindir.Yoksa böyle yapmak zorunda değiliz.
         new CountDownTimer(10000,1000) {
-
+//CountDown Timer'ın kendi onTick metodunda millisUntilFinish,bitime kalan
+//süreyi saniye olarak veriyor ki biz bunu alıp kullanalım.
             @Override
             public void onTick(long millisUntilFinished) {
                 timeText.setText("Time: " + millisUntilFinished/1000);
@@ -69,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
 
                 timeText.setText("Time Off");
+//Handler'ın removeCallbacks metoduyla biz runnable'ı durduruyoruz.
                 handler.removeCallbacks(runnable);
                 for (ImageView image : imageArray) {
                     image.setVisibility(View.INVISIBLE);
@@ -84,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         //restart
-
+//Activity'i tekrar başlatmak için activity'i destroy
+//tekrar activity'i çağırabiliriz.
                         Intent intent = getIntent();
                         finish();
                         startActivity(intent);
